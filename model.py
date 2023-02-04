@@ -2,7 +2,6 @@
 import pandas as pd
 import numpy as np
 pd.options.mode.chained_assignment = None  # default='warn'
-from collections import defaultdict as dic
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 from sklearn.model_selection import train_test_split
 import string
