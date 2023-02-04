@@ -27,7 +27,6 @@ def get_csv():
             reader = csv.reader(f)
             data = [row for row in reader]
             predictions = predict("csv_files/" + latest_file)
-        return jsonpickle.encode(data)
 
 if __name__ == "__main__":
     app.run(debug=True)
