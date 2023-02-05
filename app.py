@@ -13,7 +13,7 @@ def index():
 @app.route("/send_csv", methods=["POST"])
 def send_csv():
     file = request.files['file']
-    file.save(os.path.join("csv_files", file.filename))
+    file.save(file.filename)
     return "File received and saved successfully."
 
 @app.route("/get_csv", methods=["GET"])
@@ -26,7 +26,7 @@ def get_csv():
         with open("csv_files/" + latest_file) as f:
             reader = csv.reader(f)
             data = [row for row in reader]
-            predictions = predict("csv_files/" + latest_file)
+            predictions = predict(latest_file)
 
 if __name__ == "__main__":
     app.run(debug=True)
