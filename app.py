@@ -13,7 +13,7 @@ def index():
 @app.route("/send_csv", methods=["POST"])
 def send_csv():
     file = request.files['file']
-    file.save(file.filename)
+    file.save(os.path.join("csv_files", file.filename))
     return "File received and saved successfully."
 
 @app.route("/get_csv", methods=["GET"])
@@ -26,7 +26,8 @@ def get_csv():
         with open("csv_files/" + latest_file) as f:
             reader = csv.reader(f)
             data = [row for row in reader]
-            predictions = predict(latest_file)
+            predictions = predict("csv_files/" + latest_file)
+        return jsonpickle.encode(data)
 
 if __name__ == "__main__":
     app.run(debug=True)
